@@ -9,5 +9,10 @@ export const useClickOutside = (ref, fun) => {
       fun();
     };
     document.addEventListener("mousedown", listener);
-  }, []);
+    document.addEventListener("touchstart", listener);
+    return () => {
+      document.removeEventListener("mousedown", listener);
+      document.removeEventListener("toucnstart", listener);
+    };
+  }, [ref, fun]);
 };

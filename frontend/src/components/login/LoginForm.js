@@ -7,10 +7,10 @@ import * as Yup from "yup";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { LOGIN } from "../../reducers/userReducer";
-import cookie from "js-cookies";
+import cookie from "js-cookie";
 import { PulseLoader } from "react-spinners";
 
-const url = "http://localhost:5000/users/login";
+const url = `${process.env.REACT_APP_URL}/users/login`;
 const loginInfo = {
   email: "",
   password: "",
@@ -39,7 +39,7 @@ const LoginForm = ({ setVisible }) => {
       const { data } = await axios.post(url, login);
       setLoading(false);
       dispatch({ type: LOGIN, payload: data });
-      cookie.setItem("user", JSON.stringify(data));
+      cookie.set("user", JSON.stringify(data), { expires: 1 });
       navigate("/");
     } catch (error) {
       setLoading(false);
@@ -89,7 +89,7 @@ const LoginForm = ({ setVisible }) => {
               )}
             </Formik>
             {error && <h6 className="login_error">{error}</h6>}
-            <Link to="/" className="forgot_password">
+            <Link to="/reset" className="forgot_password">
               forgotten password?
             </Link>
             <div className="sign_splitter"></div>

@@ -5,6 +5,7 @@
 }
 body {
   font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  background: rgb(222, 226, 225);
 }
 html {
   overflow-y: scroll;
@@ -38,7 +39,8 @@ a {
 }
 
 /* buttons */
-.blue_btn {
+.blue_btn,
+.gray_btn {
   border: 0;
   outline: 0;
   border-radius: 7px;
@@ -46,13 +48,18 @@ a {
   font-size: 14px;
   font-weight: 600;
   font-family: inherit;
-  background-color: var(--blue-color);
   padding: 6.5px 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
   cursor: pointer;
+}
+.gray_btn {
+  background-color: var(--dark-color-secondary);
+}
+.blue_btn {
+  background-color: var(--blue-color);
 }
 .blur {
   position: fixed;
@@ -68,4 +75,29 @@ a {
 }
 .hover2:hover {
   background: var(--bg-third);
+}
+.scrollbar::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 1px;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  background: rgb(199, 197, 197);
+}
+.small_circle {
+  position: relative;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 11px;
+  background: var(--bg-third);
+  cursor: pointer;
+}
+.success_text {
+  color: #0eaa54;
+}
+.error_text {
+  color: #ad2323;
 }

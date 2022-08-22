@@ -6,14 +6,14 @@ import DateOfBirthSelect from "./DateOfBirthSelect";
 import GenderSelect from "./GenderSelect";
 import axios from "axios";
 import { PulseLoader } from "react-spinners";
-// import cookie from "js-cookies";
-// import { useDispatch } from "react-redux";
-// import { LOGIN } from "../../reducers/userReducer";
+import cookie from "js-cookie";
+import { useDispatch } from "react-redux";
+import { LOGIN } from "../../reducers/userReducer";
 import { useNavigate } from "react-router-dom";
 
-const url = "http://localhost:5000/users/register";
+const url = `${process.env.REACT_APP_URL}/users/register`;
 const RegisterForm = ({ setVisible }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [dateError, setDateError] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -87,20 +87,16 @@ const RegisterForm = ({ setVisible }) => {
         bDay,
         gender,
       });
-      // const { actions, ...rest } = data;
-      // console.log(rest);
       setLoading(false);
       setError("");
-      setSuccess(data.actions.message);
+      setSuccess(data.message);
+      cookie.set("user", JSON.stringify(data));
+      dispatch({ type: LOGIN, payload: data });
       setTimeout(() => {
-        // dispatch({ type: LOGIN, payload: rest });
-        // cookie.setItem("user", JSON.stringify(rest));
-        navigate("/");
+        navigate("/login");
       }, 2000);
     } catch (error) {
-      console.log(error);
       setLoading(false);
-      setSuccess("/login");
       setError(error.response.data.message);
     }
   };
@@ -123,7 +119,6 @@ const RegisterForm = ({ setVisible }) => {
 
       // setGenderError("");
     } else if (gender === "") {
-      console.log("What is your gender?");
       setGenderError("Please specify your gender");
       setDateError("");
     } else {
