@@ -27,6 +27,8 @@ const Header = ({ page }) => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const { user } = useSelector((state) => ({ ...state }));
 
+  const initUser = user?.payload ? user?.payload : user;
+
   const element = useRef(null);
   const userMenu = useRef(null);
   useClickOutside(element, () => {
@@ -109,10 +111,14 @@ const Header = ({ page }) => {
         >
           <div onClick={() => setShowUserMenu((prev) => !prev)}>
             <div className="profile hover1">
-              <img src={user?.picture} alt={user?.username} />
+              <img
+                src={initUser?.picture}
+                alt={initUser?.username}
+                className="profile_img_header"
+              />
             </div>
           </div>
-          {showUserMenu && <UserMenu user={user} />}
+          {showUserMenu && <UserMenu user={initUser} />}
         </div>
       </div>
     </header>

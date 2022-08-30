@@ -2,6 +2,7 @@ import cookie from "js-cookie";
 
 export const LOGIN = "LOGIN";
 export const VERIFY = "VERIFY";
+export const UPDATE_PROFILE_PICTURE = "UPDATE_PROFILE_PICTURE";
 export const LOGOUT = "LOGOUT";
 const userFromCookies = cookie.get("user")
   ? JSON.parse(cookie.get("user"))
@@ -21,9 +22,13 @@ export const userReducer = (state = userFromCookies, { type, payload }) => {
         ...state,
         payload,
       };
-    case LOGOUT:
+    case UPDATE_PROFILE_PICTURE:
       return {
         ...state,
+        picture: payload,
+      };
+    case LOGOUT:
+      return {
         payload: null,
       };
     default:

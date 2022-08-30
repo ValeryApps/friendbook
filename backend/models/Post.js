@@ -25,20 +25,8 @@ const postSchema = new Schema(
     },
     comments: [
       {
-        comment: {
-          type: String,
-        },
-        image: {
-          type: String,
-        },
-        commentBy: {
-          type: ObjectId,
-          ref: "User",
-        },
-        commentAt: {
-          type: Date,
-          default: new Date(),
-        },
+        type: ObjectId,
+        ref: "Comment",
       },
     ],
   },

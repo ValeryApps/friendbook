@@ -14,7 +14,7 @@ export default function LeftHome({ user }) {
   const [visible, setVisible] = useState(false);
 
   return (
-    <div className={`left_home `}>
+    <div className={`left_home scrollbar`}>
       <Link to="/profile" className="left_link hover1">
         <img src={user?.picture} alt="" />
         <span>

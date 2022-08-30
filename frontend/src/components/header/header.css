@@ -86,7 +86,7 @@ header {
 
 .active {
   border-bottom: 3px solid var(--blue-color);
-  border-radius: 0px;
+  border-radius: 0px !important;
   height: 56px;
   transform: translateX(0);
 }
@@ -348,7 +348,7 @@ header {
   background: var(--bg-third);
 }
 
-.profile img {
+.profile_img_header {
   position: relative;
   width: 30px;
   height: 30px;

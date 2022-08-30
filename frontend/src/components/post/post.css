@@ -425,6 +425,147 @@ ul {
   background: #ced0d4;
   margin: 5px 0;
 }
+.post_profile_wrap {
+  position: relative;
+  height: 500px;
+  display: grid;
+  place-items: center;
+}
+.post_updated_bg {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  height: 300px;
+  width: 100%;
+  background: var(--bg-third);
+}
+.post_updated_bg img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.cover_updated_bg {
+  /* position: absolute; */
+  top: 0px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--bg-third);
+}
+.cover_updated_bg img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.post_updated_picture {
+  z-index: 1;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--bg-primary);
+}
+/*-----create comment-----*/
+.comments_wrap {
+  padding: 10px 15px;
+}
+.create_comment {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.create_comment img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.comment_input_wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: var(--bg-forth);
+  border-radius: 50px;
+  padding-right: 10px;
+}
+.comment_input_wrap input {
+  outline: none;
+  border: none;
+  flex: 1;
+  height: 35px;
+  padding: 0 10px;
+  color: var(--color-primary);
+  background: transparent;
+}
+.comment_circle_icon {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.comment_error {
+  padding: 0 !important;
+  opacity: 1 !important;
+}
+.comment_img_preview {
+  position: relative;
+  margin-top: 5px;
+  margin-left: 40px;
+  width: 160px;
+}
+.comment_img_preview img {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.comment_img_preview .small_white_circle {
+  top: -6px;
+  right: -4px;
+  transform: scale(0.8);
+}
+.comment {
+  display: flex;
+  gap: 10px;
+  margin: 12px;
+}
+.comment_wrap {
+  background-color: var(--bg-third);
+  border-radius: 15px;
+  margin-bottom: 3px;
+}
+.comment_name {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.comment_text {
+  font-size: 12px;
+  margin-left: 10px;
+}
+.comment_img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.comment_image {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+}
+.comment_actions {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  font-size: 10px;
+  margin-left: 20px;
+}
+/*-----create comment-----*/
 /*------Post menu------*/
 @media (max-width: 415px) {
   .post .grid_2 img,

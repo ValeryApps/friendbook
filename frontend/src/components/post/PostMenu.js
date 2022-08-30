@@ -7,6 +7,7 @@ export default function PostMenu({
   userId,
   imagesLength,
   setShowMenu,
+  itIsMe,
 }) {
   const menu = useRef(null);
   useClickOutside(menu, () => setShowMenu(false));
@@ -21,7 +22,7 @@ export default function PostMenu({
         subtitle="Add this to your saved items."
       />
       <div className="line"></div>
-      {test && <MenuItem icon="edit_icon" title="Edit Post" />}
+      {test && itIsMe && <MenuItem icon="edit_icon" title="Edit Post" />}
       {!test && (
         <MenuItem
           icon="turnOnNotification_icon"
@@ -32,20 +33,26 @@ export default function PostMenu({
       {imagesLength && (
         <MenuItem icon="fullscreen_icon" title="Enter Fullscreen" />
       )}
-      {test && <MenuItem img="../../../icons/lock.png" title="Edit audience" />}
-      {test && (
+      {test && itIsMe && (
+        <MenuItem img="../../../icons/lock.png" title="Edit audience" />
+      )}
+      {test && itIsMe && (
         <MenuItem
           icon="turnOffNotifications_icon"
           title="Turn off notifications for this post"
         />
       )}
-      {test && <MenuItem icon="delete_icon" title="Turn off translations" />}
-      {test && <MenuItem icon="date_icon" title="Edit Date" />}
-      {test && (
+      {test && itIsMe && (
+        <MenuItem icon="delete_icon" title="Turn off translations" />
+      )}
+      {test && itIsMe && <MenuItem icon="date_icon" title="Edit Date" />}
+      {test && itIsMe && (
         <MenuItem icon="refresh_icon" title="Refresh share attachment" />
       )}
-      {test && <MenuItem icon="archive_icon" title="Move to archive" />}
-      {test && (
+      {test && itIsMe && (
+        <MenuItem icon="archive_icon" title="Move to archive" />
+      )}
+      {test && itIsMe && (
         <MenuItem
           icon="trash_icon"
           title="Move to trash"

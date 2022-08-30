@@ -7,8 +7,6 @@ import Activate from "./pages/home/activate";
 import Login from "./pages/login";
 import Profile from "./pages/profile/index";
 import Reset from "./pages/reset/Reset";
-import LoggedInRoute from "./routes/LoggedInRoute";
-import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
 
 function App() {
   const { user } = useSelector((state) => ({ ...state }));
@@ -17,16 +15,14 @@ function App() {
   return (
     <>
       {visible && <PostPopup user={user} setVisible={setVisible} />}
-
       <Routes>
-        <Route element={<LoggedInRoute />}>
-          <Route path="/" element={<Home setVisible={setVisible} />} exact />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/:username" element={<Profile />} />
-        </Route>
-        <Route element={<NotLoggedInRoutes />}>
-          <Route path="/login" element={<Login />} />
-        </Route>
+        <Route path="/" element={<Home setVisible={setVisible} />} exact />
+        <Route path="/profile" element={<Profile setVisible={setVisible} />} />
+        <Route
+          path="/profile/:username"
+          element={<Profile setVisible={setVisible} />}
+        />
+        <Route path="/login" element={<Login />} />
         <Route path="/activate/:token" element={<Activate />} />
         <Route path="/reset" element={<Reset />} />
       </Routes>

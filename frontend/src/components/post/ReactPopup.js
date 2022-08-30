@@ -25,7 +25,7 @@ const reactsArray = [
   },
 ];
 
-const ReactPopup = ({ visible, setVisible }) => {
+const ReactPopup = ({ visible, setVisible, handleReactToPost }) => {
   return (
     <>
       {visible && (
@@ -43,7 +43,11 @@ const ReactPopup = ({ visible, setVisible }) => {
           }
         >
           {reactsArray.map((react, index) => (
-            <div className="react" key={index}>
+            <div
+              className="react"
+              key={index}
+              onClick={() => handleReactToPost(react.name)}
+            >
               <img src={react.image} alt={react.name} />
             </div>
           ))}

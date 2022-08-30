@@ -15,6 +15,7 @@ const UserMenu = ({ user }) => {
   const logout = () => {
     dispatch({ type: LOGOUT });
     cookies.remove("user");
+    user = null;
     navigate("/login");
   };
   return (

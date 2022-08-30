@@ -19,7 +19,7 @@ exports.upload = async (req, res) => {
     }
     return res.json(images);
   } catch (error) {
-    return res.status(500).json({ message: "There was a server error" });
+    return res.status(500).json({ message: error.message });
   }
 };
 
@@ -33,7 +33,7 @@ exports.getImages = async (req, res) => {
       .execute();
     return res.json(result);
   } catch (error) {
-    console.log(error.error);
+    console.log(error);
   }
 };
 

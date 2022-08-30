@@ -1,23 +1,19 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import LoginForm from "../../components/login/LoginForm";
 import RegisterForm from "../../components/login/RegisterForm";
+import cookies from "js-cookie";
 
 const Login = () => {
   const [visible, setVisible] = useState(false);
-  const { user } = useSelector((state) => ({ ...state }));
-  const navigate = useNavigate();
+
   useEffect(() => {
-    if (user) {
-      navigate("/");
-    }
-  }, [user, navigate]);
+    cookies.remove("user");
+  }, []);
   return (
     <div className="login">
       <LoginForm setVisible={setVisible} />
-      {visible && !user && <RegisterForm setVisible={setVisible} />}
+      {visible && <RegisterForm setVisible={setVisible} />}
       <Footer />
     </div>
   );

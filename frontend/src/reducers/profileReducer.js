@@ -3,7 +3,7 @@ export const FETCH_PROFILE_ERROR = "FETCH_PROFILE_ERROR";
 export const FETCH_PROFILE_SUCCESS = "FETCH_PROFILE_SUCCESS";
 
 export const initialState = {
-  profile: {},
+  profile: null,
   error: "",
   loading: false,
 };

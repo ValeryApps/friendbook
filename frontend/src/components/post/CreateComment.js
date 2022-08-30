@@ -2,13 +2,18 @@ import { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Picker from "emoji-picker-react";
 import Error from "../Error";
+import { comment } from "../../functions/post";
+import dataURItoBlob from "../../helpers/dataURItoBlob";
+import { uploadImages } from "../../helpers/uploadImages";
+import { PulseLoader } from "react-spinners/";
 
-const CreateComment = () => {
+const CreateComment = ({ postId }) => {
   const [picker, showPicker] = useState(false);
   const [text, setText] = useState("");
   const [error, setError] = useState("");
   const [image, setImage] = useState("");
   const [cursorPosition, setCursorPosition] = useState(0);
+  const [loading, setLoading] = useState(false);
   const textRef = useRef(null);
   const selectImage = useRef(null);
 
@@ -48,10 +53,42 @@ const CreateComment = () => {
     setCursorPosition(start.length + emoji.length);
   };
   const { user } = useSelector((state) => ({ ...state }));
+  const initUser = user?.payload ? user?.payload : user;
+
+  const handleComment = async (e) => {
+    try {
+      if (e.key === "Enter") {
+        if (image !== "") {
+          setLoading(true);
+          const img = dataURItoBlob(image);
+          const path = `${initUser?.username}/posts/${postId}/comment_image`;
+          const formData = new FormData();
+          formData.append("path", path);
+          formData.append("file", img);
+          const commentImgs = await uploadImages(
+            formData,
+            path,
+            initUser.token
+          );
+          await comment(postId, initUser.token, text, commentImgs[0].url);
+          setLoading(false);
+          setText("");
+          setImage("");
+        } else {
+          setLoading(true);
+          await comment(postId, initUser?.token, text, "");
+          setLoading(false);
+          setText("");
+        }
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <div className="create_comment_wrap">
       <div className="create_comment">
-        <img src={user?.picture} alt="" />
+        <img src={initUser?.picture} alt="" />
         <div className="comment_input_wrap">
           {picker && <Picker onEmojiClick={handleEmoji} />}
           <input
@@ -61,6 +98,7 @@ const CreateComment = () => {
             accept="image/jpeg, image/jpg, image/gif, image/png, image/webp"
             onChange={handleImages}
           />
+
           {error && (
             <div className="comment_error">
               <Error error={error} setError={() => setError("")} />
@@ -72,7 +110,11 @@ const CreateComment = () => {
             onChange={(e) => setText(e.target.value)}
             value={text}
             placeholder="Write a comment"
+            onKeyUp={handleComment}
           />
+          <div className="spin_loader">
+            <PulseLoader color="#af9af1" loading={loading} />
+          </div>
           <div
             className="comment_circle_icon circle hover2"
             onClick={() => showPicker((prev) => !prev)}

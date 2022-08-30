@@ -40,7 +40,8 @@ a {
 
 /* buttons */
 .blue_btn,
-.gray_btn {
+.gray_btn,
+.light_blue_btn {
   border: 0;
   outline: 0;
   border-radius: 7px;
@@ -60,6 +61,9 @@ a {
 }
 .blue_btn {
   background-color: var(--blue-color);
+}
+.light_blue_btn {
+  background-color: var(--light-blue-color);
 }
 .blur {
   position: fixed;
@@ -101,3 +105,10 @@ a {
 .error_text {
   color: #ad2323;
 }
+/*----filters---*/
+.filter_blue {
+  filter: invert(39%) sepia(57%) saturate(200%) saturate(200%) saturate(200%)
+    saturate(200%) saturate(200%) saturate(147.75%) hue-rotate(202deg)
+    brightness(97%) contrast(96%);
+}
+/*----filters---*/
